@@ -1,24 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace CretaceousPark.Models
+namespace TravelApi.Models
 {
-    public class CretaceousParkContext : DbContext
+    public class TravelApiContext : DbContext
     {
-        public CretaceousParkContext(DbContextOptions<CretaceousParkContext> options)
+        public TravelApiContext(DbContextOptions<TravelApiContext> options)
             : base(options)
         {
         }
-        // protected override void OnModelCreating(ModelBuilder builder)
-        // {
-        //   builder.Entity<Animal>()
-        //       .HasData(
-        //           new Animal { AnimalId = 1, Name = "Matilda", Species = "Woolly Mammoth", Age = 7, Gender = "Female" },
-        //           new Animal { AnimalId = 2, Name = "Rexie", Species = "Dinosaur", Age = 10, Gender = "Female" },
-        //           new Animal { AnimalId = 3, Name = "Matilda", Species = "Dinosaur", Age = 2, Gender = "Female" },
-        //           new Animal { AnimalId = 4, Name = "Pip", Species = "Shark", Age = 4, Gender = "Male" },
-        //           new Animal { AnimalId = 5, Name = "Bartholomew", Species = "Dinosaur", Age = 22, Gender = "Male" }
-        //       );
-        // }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+          builder.Entity<Destination>()
+              .HasData(
+              new Destination { DestinationId = 1, Name = "Seattle", Review = "It's cool", Rating = 5, user_name = "Bob" },
+              new Destination { DestinationId = 2, Name = "San Francisco", Review = "It's Busy", Rating = 4, user_name = "Bob" },
+              new Destination { DestinationId = 3, Name = "New York", Review = "Way too many people", Rating = 3, user_name = "Joe" },
+              new Destination { DestinationId = 4, Name = "Seattle", Review = "It's pretty neat", Rating = 5, user_name = "Joe" },
+              new Destination { DestinationId = 5, Name = "Seattle", Review = "It's meh", Rating = 2, user_name = "Fred" }
+
+              );
+        }
 
         public DbSet<Destination> Destinations { get; set; }
     }
